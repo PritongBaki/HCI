@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            /* Modern gradient background with #ff523b */
+            background: linear-gradient(135deg, #ff523b 0%, #fff0eb 100%);
+            font-family: Arial, sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+        /* Decorative circles for modern effect */
+        .bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.18;
+            z-index: 0;
+        }
+        .bg-shape1 {
+            width: 400px;
+            height: 400px;
+            background: #ff523b;
+            top: -120px;
+            left: -120px;
+        }
+        .bg-shape2 {
+            width: 300px;
+            height: 300px;
+            background: #ff523b;
+            bottom: -100px;
+            right: -100px;
+        }
+        .thank-you {
+            background: #fff;
+            padding: 40px 60px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .thank-you h1 {
+            color: #ff523b;
+            margin-bottom: 16px;
+        }
+        .thank-you p {
+            color: #333;
+            font-size: 1.2em;
+        }
+        .menu-btn {
+            display: inline-block;
+            margin-top: 24px;
+            padding: 12px 28px;
+            background-color: #ff523b;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: background 0.2s;
+        }
+        .menu-btn:hover {
+            background-color: #d63d23;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-shape bg-shape1"></div>
+    <div class="bg-shape bg-shape2"></div>
+    <div class="thank-you">
+        <h1>Thank You!</h1>
+        <p>Thank you for purchasing this item.<br>We appreciate your business!</p>
+        <a href="index.html" class="menu-btn">Go Back to Menu</a>
+    </div>
+</body>
+</html>

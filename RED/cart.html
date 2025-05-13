@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>All Products - RED</title>
+   <link rel="stylesheet" href="style.css">
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"rel="stylesheet">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+
+   
+   <div class="container">
+       <div class="navbar">
+           <div class="logo">
+               <a href="index.html"><img src="images/RED.png" width="125px" alt="RED Logo"></a>
+           </div>
+           <nav>
+               <ul id="MenuItems">
+                   <li><a href="index.html">Home</a></li>
+                   <li><a href="products.html">Boys</a></li>
+                   <li><a href="products2.html">Girls</a></li>
+                   <li><a href="contact.htmls">Contact</a></li>
+                   <li><a href="account.html">Account</a></li>
+               </ul>
+           </nav>
+           <a href="cart.html"><img src="images/cart.png" width="30px" height="30px" alt="Cart"></a>
+           <img src="images/menu.png" class="menu-icon" onclick="menutoggle()" alt="Menu">
+       </div>
+
+   </div>
+
+<div class="small-container cart-page">
+    <h2>Your Cart</h2>
+    <table id="cartTable">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Name</th>
+                <th>Size</th>
+                <th>Color</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Cart items will be injected here -->
+        </tbody>
+    </table>
+    <div id="cartTotal" style="margin-top:20px;font-size:1.2em;"></div>
+    <button id="buyNowCartBtn" class="btn main-cta" style="margin-top:24px;">Buy Now</button>
+</div>
+
+<!--------footer------>
+<div class="footer">
+   <div class="container">
+       <div class="row">
+           <div class="footer-col-1">
+               <h3>Download our App</h3>
+               <p>Download App for Android and ios mobile phone.</p>
+               <div class="app-logo">
+                   <img src="images/play-store.png" alt="Play Store">
+                   <img src="images/app-store.png" alt="App Store">
+               </div>
+           </div>
+           <div class="footer-col-2">
+               <img src="images/RED.png" width="125px" alt="RED Logo">
+               <p>Our purpose is to Sustainably make the pleasure and benefits of sports accessible to the many.</p>
+           </div>
+           <div class="footer-col-3">
+               <h3>Useful Links</h3>
+               <ul>
+                   <li>Coupons</li>
+                   <li>Blog Post</li>
+                   <li>Return Policy</li>
+                   <li>Join Affiliate</li>
+               </ul>
+           </div>
+           <div class="footer-col-4">
+               <h3>Follow Us</h3>
+               <ul>
+                   <li>Facebook</li>
+                   <li>Twitter</li>
+                   <li>Instagram</li>
+                   <li>Youtube</li>
+               </ul>
+           </div>
+       </div>
+       <hr>
+       <p class="copyright">Copyright 2025</p>
+   </div>
+</div>
+
+<!------ js for toggle menu ------>
+<script>
+   var MenuItems = document.getElementById("MenuItems");
+
+   MenuItems.style.maxHeight = "0px";
+
+   function menutoggle(){
+       if(MenuItems.style.maxHeight == "0px")
+   {
+       MenuItems.style.maxHeight = "200px";
+   }
+   else
+   {
+       MenuItems.style.maxHeight = "0px";
+   }
+   }
+</script>
+
+<script>
+function renderCart() {
+    var cart = JSON.parse(localStorage.getItem('cart')) || [];
+    var tbody = document.querySelector('#cartTable tbody');
+    tbody.innerHTML = '';
+    var total = 0;
+    cart.forEach(function(item, idx) {
+        var tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td><img src="${item.img}" alt="${item.title}" style="width:60px;height:60px;object-fit:cover;border-radius:8px;"></td>
+            <td>${item.title}</td>
+            <td>${item.size || ''}</td>
+            <td><span style="display:inline-block;width:20px;height:20px;background:${item.color};border-radius:50%;border:1px solid #ccc;"></span></td>
+            <td>${item.price}</td>
+            <td>${item.quantity}</td>
+            <td><button onclick="removeFromCart(${idx})" style="background:#ff523b;color:#fff;border:none;padding:6px 12px;border-radius:4px;cursor:pointer;">Remove</button></td>
+        `;
+        tbody.appendChild(tr);
+        var priceNum = parseFloat(item.price.replace(/[^\d.]/g, '')) || 0;
+        total += priceNum * (item.quantity || 1);
+    });
+    document.getElementById('cartTotal').textContent = 'Total: $' + total.toFixed(2);
+    // Disable Buy Now if cart is empty
+    document.getElementById('buyNowCartBtn').disabled = cart.length === 0;
+}
+function removeFromCart(idx) {
+    var cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.splice(idx, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    renderCart();
+}
+document.getElementById('buyNowCartBtn').onclick = function() {
+    // Clear cart and redirect to thank you page
+    localStorage.removeItem('cart');
+    window.location.href = 'thankyou.html';
+};
+window.onload = renderCart;
+</script>
+
+</body>
+</html>

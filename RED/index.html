@@ -1,0 +1,641 @@
+make <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RED  | Shoe Website Design</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+    .shoe-desc {
+        font-size: 0.95em;
+        color: #555;
+        margin: 4px 0 8px 0;
+        transition: color 0.2s;
+    }
+    .product-link:hover .shoe-desc {
+        color: #ff523b;
+    }
+    .product-link .col-4 {
+        transition: transform 0.15s cubic-bezier(.4,2,.6,1), box-shadow 0.15s;
+    }
+    .product-link.clicked .col-4 {
+        transform: scale(0.96) rotate(-2deg);
+        box-shadow: 0 8px 32px rgba(255,82,59,0.15);
+    }
+    /* Modern modal popup effect */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        overflow: auto;
+        background: rgba(30, 30, 30, 0.45);
+        transition: background 0.3s;
+    }
+    .modal.show {
+        display: block;
+    }
+    .modal-content {
+        background: #fff;
+        margin: 60px auto;
+        border-radius: 18px;
+        padding: 32px 32px 24px 32px;
+        max-width: 400px;
+        box-shadow: 0 12px 48px rgba(0,0,0,0.18);
+        position: relative;
+        animation: modalPopIn 0.32s cubic-bezier(.4,2,.6,1);
+    }
+    @keyframes modalPopIn {
+        0% { opacity: 0; transform: scale(0.85) translateY(40px); }
+        100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    #closeModal {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        font-size: 1.6em;
+        color: #ff523b;
+        cursor: pointer;
+        background: #fff0eb;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        transition: background 0.2s, color 0.2s;
+    }
+    #closeModal:hover {
+        background: #ff523b;
+        color: #fff;
+    }
+    </style>
+ </head>
+ <body>
+
+
+    <div class="header">  
+    <div class="hero-overlay"></div>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html"><img src="images/RED.png" width="125px" alt="RED Logo"></a>
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Boys</a></li>
+                    <li><a href="products2.html">Girls</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="account.html">Account</a></li>
+                </ul>
+            </nav>
+            <a href="cart.html"><img src="images/cart.png" width="30px" height="30px" alt="Cart"></a>
+            <img src="images/menu.png" class="menu-icon" onclick="menutoggle()" alt="Menu">
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <h1>Step Into Comfort<br>And Style!</h1>
+                <p>Find the perfect pair for every step. Our shoes blend performance, comfort, and fashion—so you can walk, run, and play with confidence every day.</p>
+                <a href="products.html" class="btn main-cta">Explore Now &#8594;</a>
+            </div>
+            <div class="col-2">
+                <img src="images/image1.png" alt="Workout Shoes">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-------- featured categories -------->
+<div class="categories">
+    <div class="small-container">
+        <div class="row">
+            <div class="col-3">
+                <img src="images/category-1.jpg" alt="Category 1">
+            </div>
+            <div class="col-3">
+                <img src="images/category-2.jpg" alt="Category 2">
+            </div>
+         
+        </div>
+    </div>   
+</div>
+<!-------- featured products -------->
+<div class="small-container">
+    <h2 class="title">Featured Products</h2>
+    <div class="row">
+        <a href="#" class="product-link"
+           data-title="Nike Cortez Leather"
+           data-img="images/boy1.png"
+           data-desc="Classic running shoe with leather upper."
+           data-price="$50.00"
+           data-sizes="6,7,8,9,10"
+           data-colors="#ff523b,#000000,#ffffff">
+            <div class="col-4">
+                <div class="product-img-wrap"><img src="images/boy1.png" alt="Nike Cortez Leather"></div>
+                <h4>Nike Cortez Leather</h4>
+                <p class="shoe-desc">Classic running shoe with leather upper.</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>          
+                </div>
+                <p>$50.00</p>
+            </div>
+        </a>
+        <a href="#" class="product-link"
+           data-title="New Balance 327"
+           data-img="images/girl1.jpg"
+           data-desc="Retro-inspired sneaker with modern comfort."
+           data-price="$50.00"
+           data-sizes="6,7,8,9,10"
+           data-colors="#ff523b,#000000,#ffffff">
+            <div class="col-4">
+                <div class="product-img-wrap"><img src="images/girl1.jpg" alt="New Balance 327"></div>
+                <h4>New Balance 327</h4>
+                <p class="shoe-desc">Retro-inspired sneaker with modern comfort.</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                    <i class="fa fa-star-o"></i>              
+                </div>
+                <p>$50.00</p>
+            </div>
+        </a>
+        <a href="#" class="product-link"
+           data-title="FuelCell Rebel v4"
+           data-img="images/girl2.jpg"
+           data-desc="Lightweight running shoe for speed and comfort."
+           data-price="$50.00"
+           data-sizes="6,7,8,9,10"
+           data-colors="#ff523b,#000000,#ffffff">
+            <div class="col-4">
+                <div class="product-img-wrap"><img src="images/girl2.jpg" alt="FuelCell Rebel v4"></div>
+                <h4>FuelCell Rebel v4</h4>
+                <p class="shoe-desc">Lightweight running shoe for speed and comfort.</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>             
+                </div>
+                <p>$50.00</p>
+            </div>
+        </a>
+        <a href="#" class="product-link"
+           data-title="Nike SB Heritage Vulc"
+           data-img="images/boy2.jpg"
+           data-desc="Skate-inspired style with classic vulcanized sole."
+           data-price="$50.00"
+           data-sizes="6,7,8,9,10"
+           data-colors="#ff523b,#000000,#ffffff">
+            <div class="col-4">
+                <div class="product-img-wrap"><img src="images/boy2.jpg" alt="Nike SB Heritage Vulc"></div>
+                <h4>Nike SB Heritage Vulc</h4>
+                <p class="shoe-desc">Skate-inspired style with classic vulcanized sole.</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>          
+                </div>
+                <p>$50.00</p>
+            </div>
+        </a>
+    </div>
+    <h2 class="title">Latest Products</h2>
+    <div class="row">
+        <a href="#" class="product-link"
+           data-title="Air Jordan 1 Low"
+           data-img="images/boy3.png"
+           data-desc="Iconic low-top sneaker with classic style."
+           data-price="$50.00"
+           data-sizes="6,7,8,9,10"
+           data-colors="#ff523b,#000000,#ffffff">
+            <div class="col-4">
+                <div class="product-img-wrap"><img src="images/boy3.png" alt="Air Jordan 1 Low"></div>
+                <h4>Air Jordan 1 Low</h4>
+                <p class="shoe-desc">Iconic low-top sneaker with classic style.</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>             
+                </div>
+                <p>$50.00</p>
+            </div>
+        </a>
+        <a href="#" class="product-link"
+           data-title="Addidas Samba OG"
+           data-img="images/boy4.png"
+           data-desc="Classic soccer-inspired sneaker."
+           data-price="$50.00"
+           data-sizes="6,7,8,9,10"
+           data-colors="#ff523b,#000000,#ffffff">
+            <div class="col-4">
+                <div class="product-img-wrap"><img src="images/boy4.png" alt="Addidas Samba OG"></div>
+                <h4>Addidas Samba OG</h4>
+                <p class="shoe-desc">Classic soccer-inspired sneaker.</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                    <i class="fa fa-star-o"></i>            
+                </div>
+                <p>$50.00</p>
+            </div>
+        </a>
+        <a href="#" class="product-link"
+           data-title="Converse Chuck Taylor All Star"
+           data-img="images/boy5.png"
+           data-desc="Timeless canvas sneaker for all occasions."
+           data-price="$50.00"
+           data-sizes="6,7,8,9,10"
+           data-colors="#ff523b,#000000,#ffffff">
+            <div class="col-4">
+                <div class="product-img-wrap"><img src="images/boy5.png" alt="Converse Chuck Taylor All Star"></div>
+                <h4>Converse Chuck Taylor All Star</h4>
+                <p class="shoe-desc">Timeless canvas sneaker for all occasions.</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>       
+                </div>
+                <p>$50.00</p>
+            </div>
+        </a>
+        <a href="#" class="product-link"
+           data-title="Adidas Ultimashow 2.0"
+           data-img="images/boy6.png"
+           data-desc="Versatile running shoe for everyday comfort."
+           data-price="$50.00"
+           data-sizes="6,7,8,9,10"
+           data-colors="#ff523b,#000000,#ffffff">
+            <div class="col-4">
+                <div class="product-img-wrap"><img src="images/boy6.png" alt="Adidas Ultimashow 2.0"></div>
+                <h4>Adidas Ultimashow 2.0</h4>
+                <p class="shoe-desc">Versatile running shoe for everyday comfort.</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>        
+                </div>
+                <p>$50.00</p>
+            </div>
+        </a>
+    </div>
+    <div class="row">
+        <a href="#" class="product-link"
+           data-title="Fresh Foam X 1080v14"
+           data-img="images/girl7.webp"
+           data-desc="Premium cushioning for long-distance comfort."
+           data-price="$50.00"
+           data-sizes="6,7,8,9,10"
+           data-colors="#ff523b,#000000,#ffffff">
+            <div class="col-4">
+                <div class="product-img-wrap"><img src="images/girl7.webp" alt="Fresh Foam X 1080v14"></div>
+                <h4>Fresh Foam X 1080v14</h4>
+                <p class="shoe-desc">Premium cushioning for long-distance comfort.</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>               
+                </div>
+                <p>$50.00</p>
+            </div>
+        </a>
+        <a href="#" class="product-link"
+           data-title="New Balance 1906R"
+           data-img="images/girl8.webp"
+           data-desc="Retro runner with modern support and style."
+           data-price="$50.00"
+           data-sizes="6,7,8,9,10"
+           data-colors="#ff523b,#000000,#ffffff">
+            <div class="col-4">
+                <div class="product-img-wrap"><img src="images/girl8.webp" alt="New Balance 1906R"></div>
+                <h4>New Balance 1906R</h4>
+                <p class="shoe-desc">Retro runner with modern support and style.</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                    <i class="fa fa-star-o"></i>              
+                </div>
+                <p>$50.00</p>
+            </div>
+        </a>
+        <a href="#" class="product-link"
+           data-title="Fresh Foam X More v5"
+           data-img="images/girl9.webp"
+           data-desc="Maximum cushioning for plush, soft rides."
+           data-price="$50.00"
+           data-sizes="6,7,8,9,10"
+           data-colors="#ff523b,#000000,#ffffff">
+            <div class="col-4">
+                <div class="product-img-wrap"><img src="images/girl9.webp" alt="Fresh Foam X More v5"></div>
+                <h4>Fresh Foam X More v5</h4>
+                <p class="shoe-desc">Maximum cushioning for plush, soft rides.</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>            
+                </div>
+                <p>$50.00</p>
+            </div>
+        </a>
+        <a href="#" class="product-link"
+           data-title="Fresh Foam X 860v14"
+           data-img="images/girl10.webp"
+           data-desc="Stability shoe for reliable everyday training."
+           data-price="$50.00"
+           data-sizes="6,7,8,9,10"
+           data-colors="#ff523b,#000000,#ffffff">
+            <div class="col-4">
+                <div class="product-img-wrap"><img src="images/girl10.webp" alt="Fresh Foam X 860v14"></div>
+                <h4>Fresh Foam X 860v14</h4>
+                <p class="shoe-desc">Stability shoe for reliable everyday training.</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>               
+                </div>
+                <p>$50.00</p>
+            </div>
+        </a>
+    </div>
+</div>
+
+
+<!--------testimonial------>
+<div class="testimonial">
+    <div class="small-container">
+        <div class="row">
+            <div class="col-3">
+                <i class="fa fa-quote-left"></i>
+                <p>I was surprised by how lightweight these shoes are without sacrificing durability. The breathable fabric keeps my feet cool even on hot days. They also match well with both casual and sporty outfits.</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>               
+                </div>
+                <img src="images/brandon.jpg">
+                <h3>Brandon Jay Doluta</h3>
+            </div>
+            <div class="col-3">
+                <i class="fa fa-quote-left"></i>
+                <p>These shoes are both stylish and comfortable, making them perfect for everyday use. The cushioning provides great support for long walks or standing all day. I've gotten several compliments on the design, and they've quickly become my go-to pair.</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>               
+                </div>
+                <img src="images/rivas.jpg">
+                <h3>Reynaldo Joshua Rivas</h3>
+            </div>
+            <div class="col-3">
+                <i class="fa fa-quote-left"></i>
+                <p>These shoes needed a short break-in period, but now they fit perfectly. The sole offers great grip, which is ideal for walking on different surfaces. I'd definitely recommend them for anyone looking for reliable everyday footwear.</p>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>               
+                </div>
+                <img src="images/manuta.jpg">
+                <h3>Ian Manuta</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--------brands------>
+<div class="brands">
+    <div class="small-container">
+        <div class="row">
+            <div class="col-5">
+                <img src="images/logo-godrej.png">
+            </div>
+            <div class="col-5">
+                <img src="images/logo-oppo.png">
+            </div>
+            <div class="col-5">
+                <img src="images/logo-coca-cola.png">
+            </div>
+            <div class="col-5">
+                <img src="images/logo-paypal.png">
+            </div>
+            <div class="col-5">
+                <img src="images/logo-philips.png">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--------footer------>
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-col-1">
+                <h3>Download our App</h3>
+                <p>Download App for Android and ios mobile phone.</p>
+                <div class="app-logo">
+                    <img src="images/play-store.png" alt="Play Store">
+                    <img src="images/app-store.png" alt="App Store">
+                </div>
+            </div>
+            <div class="footer-col-2">
+                <img src="images/RED.png" width="125px" alt="RED Logo">
+                <p>Our purpose is to Sustainably make the pleasure and benefits of sports accessible to the many.</p>
+            </div>
+            <div class="footer-col-3">
+                <h3>Useful Links</h3>
+                <ul>
+                    <li>Coupons</li>
+                    <li>Blog Post</li>
+                    <li>Return Policy</li>
+                    <li>Join Affiliate</li>
+                </ul>
+            </div>
+            <div class="footer-col-4">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li>Facebook</li>
+                    <li>Twitter</li>
+                    <li>Instagram</li>
+                    <li>Youtube</li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <p class="copyright">Copyright 2025</p>
+    </div>
+</div>
+
+<!------ js for toggle menu ------>
+<script>
+    var MenuItems = document.getElementById("MenuItems");
+
+    MenuItems.style.maxHeight = "0px";
+
+    function menutoggle(){
+        if(MenuItems.style.maxHeight == "0px")
+    {
+        MenuItems.style.maxHeight = "200px";
+    }
+    else
+    {
+        MenuItems.style.maxHeight = "0px";
+    }
+    }
+</script>
+
+<!-- Product Details Modal -->
+<div id="productModal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closeModal">&times;</span>
+    <img id="modalImg" src="" alt="Product Image" style="max-width:200px;">
+    <h2 id="modalTitle"></h2>
+    <p id="modalDesc"></p>
+    <p id="modalPrice"></p>
+    <div>
+      <label for="modalSizes">Size:</label>
+      <select id="modalSizes"></select>
+    </div>
+    <div>
+      <label>Color:</label>
+      <div id="modalColors" style="display:flex;gap:8px;margin:8px 0;"></div>
+    </div>
+    <button id="buyNowBtn" class="btn main-cta">Buy Now</button>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.product-link').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Click animation
+        link.classList.add('clicked');
+        setTimeout(function() {
+            link.classList.remove('clicked');
+        }, 180);
+        // Get data attributes
+        var title = this.getAttribute('data-title');
+        var img = this.getAttribute('data-img');
+        var desc = this.getAttribute('data-desc');
+        var price = this.getAttribute('data-price');
+        var sizes = this.getAttribute('data-sizes');
+        var colors = this.getAttribute('data-colors');
+        // Set modal content
+        document.getElementById('modalTitle').textContent = title;
+        document.getElementById('modalImg').src = img;
+        document.getElementById('modalDesc').textContent = desc;
+        document.getElementById('modalPrice').textContent = price;
+
+        // Populate sizes
+        var sizesArr = sizes ? sizes.split(',') : [];
+        var sizesSelect = document.getElementById('modalSizes');
+        sizesSelect.innerHTML = '';
+        sizesArr.forEach(function(size) {
+            var opt = document.createElement('option');
+            opt.value = size;
+            opt.textContent = size;
+            sizesSelect.appendChild(opt);
+        });
+
+        // Populate colors
+        var colorsArr = colors ? colors.split(',') : [];
+        var colorsDiv = document.getElementById('modalColors');
+        colorsDiv.innerHTML = '';
+        colorsArr.forEach(function(color) {
+            var colorBtn = document.createElement('button');
+            colorBtn.style.background = color;
+            colorBtn.style.width = '24px';
+            colorBtn.style.height = '24px';
+            colorBtn.style.border = '2px solid #ccc';
+            colorBtn.style.borderRadius = '50%';
+            colorBtn.style.cursor = 'pointer';
+            colorBtn.setAttribute('data-color', color);
+            colorBtn.onclick = function() {
+                // Remove selected from all
+                colorsDiv.querySelectorAll('button').forEach(btn => btn.style.border = '2px solid #ccc');
+                this.style.border = '2px solid #ff523b';
+            };
+            colorsDiv.appendChild(colorBtn);
+        });
+
+        // Show modal
+        var modal = document.getElementById('productModal');
+        modal.classList.add('show');
+
+        // Set up Buy Now button
+        var buyNowBtn = document.getElementById('buyNowBtn');
+        buyNowBtn.onclick = function() {
+            // Get selected size and color
+            var selectedSize = document.getElementById('modalSizes').value;
+            var selectedColorBtn = document.querySelector('#modalColors button[style*="2px solid #ff523b"]');
+            var selectedColor = selectedColorBtn ? selectedColorBtn.getAttribute('data-color') : '';
+            // Create cart item
+            var cartItem = {
+                title: title,
+                img: img,
+                desc: desc,
+                price: price,
+                size: selectedSize,
+                color: selectedColor,
+                quantity: 1
+            };
+            // Get cart from localStorage
+            var cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push(cartItem);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            // Redirect to cart page
+            window.location.href = 'cart.html';
+        };
+    });
+});
+// Close modal
+document.getElementById('closeModal').onclick = function() {
+    var modal = document.getElementById('productModal');
+    modal.classList.remove('show');
+};
+// Close modal when clicking outside content
+window.onclick = function(event) {
+    var modal = document.getElementById('productModal');
+    if (event.target == modal) {
+        modal.classList.remove('show');
+    }
+};
+</script>
+
+ </body>
+ </html>

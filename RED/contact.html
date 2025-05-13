@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff523b 0%, #fff0eb 100%);
+            font-family: Arial, sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+        .bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.18;
+            z-index: 0;
+        }
+        .bg-shape1 {
+            width: 400px;
+            height: 400px;
+            background: #ff523b;
+            top: -120px;
+            left: -120px;
+        }
+        .bg-shape2 {
+            width: 300px;
+            height: 300px;
+            background: #ff523b;
+            bottom: -100px;
+            right: -100px;
+        }
+        .contact {
+            background: #fff;
+            padding: 40px 60px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            max-width: 500px;
+        }
+        .contact h1 {
+            color: #ff523b;
+            margin-bottom: 16px;
+        }
+        .contact p {
+            color: #333;
+            font-size: 1.1em;
+            margin-bottom: 24px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        input, textarea {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .submit-btn {
+            background-color: #ff523b;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 0;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .submit-btn:hover {
+            background-color: #d63d23;
+        }
+        .menu-btn {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 12px 28px;
+            background-color: #ff523b;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: background 0.2s;
+        }
+        .menu-btn:hover {
+            background-color: #d63d23;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-shape bg-shape1"></div>
+    <div class="bg-shape bg-shape2"></div>
+    <div class="contact">
+        <h1>Contact Us</h1>
+        <p>Have questions or need support? Fill out the form below or reach us at <a href="mailto:support@red.com" style="color:#ff523b;text-decoration:underline;">support@red.com</a>.</p>
+        <form>
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+        <a href="index.html" class="menu-btn">Back to Menu</a>
+    </div>
+</body>
+</html>
